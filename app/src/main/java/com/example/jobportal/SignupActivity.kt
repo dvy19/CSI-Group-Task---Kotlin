@@ -4,11 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.jobportal.RetrofitClient
-import com.example.jobportal.SignupRequest
-import com.example.jobportal.SignupResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +16,9 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)
+
+
+
 
         val Fullname = findViewById<EditText>(R.id.full_name)
         val mail = findViewById<EditText>(R.id.mail)
@@ -42,16 +43,14 @@ class SignupActivity : AppCompatActivity() {
             val lastName = parts.getOrNull(1) ?: ""
 
             val request = SignupRequest(
-                username = email,
+                full_name = fullName,
                 email = email,
                 password = password,
                 password2 = password2,
-                first_name = firstName,
-                last_name = lastName,
-                phone = "9999999999"
+
             )
 
-            RetrofitClient.instance.signup(request)
+            SignUpRetrofitClient.instance.signup(request)
                 .enqueue(object : Callback<SignupResponse> {
                     override fun onResponse(
                         call: Call<SignupResponse>,
@@ -70,6 +69,19 @@ class SignupActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
                     }
                 })
+        }
+
+
+
+
+
+
+
+        val loginBtn=findViewById<TextView>(R.id.login_btn)
+        loginBtn.setOnClickListener{
+            val intent=Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+
         }
     }
 }

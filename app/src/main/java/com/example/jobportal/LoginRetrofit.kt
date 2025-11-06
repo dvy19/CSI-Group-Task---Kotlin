@@ -1,16 +1,16 @@
-package com.example.jobportal
-
+import com.example.jobportal.SignIn
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+object LoginRetrofit {
     private const val BASE_URL = "https://jobseeker-backend-django.onrender.com/"
 
-    val instance: JobSeekerApi by lazy {
-        Retrofit.Builder()
+    val instance: SignIn by lazy {
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(JobSeekerApi::class.java)
+
+        retrofit.create(SignIn::class.java)
     }
 }
