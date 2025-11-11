@@ -12,7 +12,7 @@
         android:layout_height="280dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/job_search_illustration"
+        android:src="@drawable/img"
         android:contentDescription="job_search_illustration" />
 
     <LinearLayout
