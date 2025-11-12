@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/onboarding_background"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/illustration"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/img"
+        android:contentDescription="job_search_illustration" />
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/illustration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/title_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Your"
+            android:textSize="36sp"
+            android:textColor="@color/text_light_gray"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/title_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dream Job"
+            android:textSize="36sp"
+            android:textColor="@color/text_dark_blue"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:layout_marginTop="-8dp" />
+
+        <TextView
+            android:id="@+id/title_line3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Here"
+            android:textSize="36sp"
+            android:textColor="@color/text_light_gray"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:layout_marginTop="-8dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Explore all the most exciting job roles based\non your interest and study major"
+        android:textSize="14sp"
+        android:textColor="@color/text_description"
+        android:textAlignment="center"
+        android:maxWidth="280dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+    android:layout_marginBottom="20dp"
+    android:layout_marginEnd="20dp"
+    android:src="@drawable/ic_arrow_forward"
+    app:fabSize="normal"
+    app:backgroundTint="@color/button_blue"
+    app:tint="@android:color/white"
+    android:contentDescription="next_button" />
+</RelativeLayout>
