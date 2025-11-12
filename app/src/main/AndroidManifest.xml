@@ -27,7 +27,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HomeActivity"/>
+
+
+        <activity android:name=".LogInActivity"/>
+        <activity android:name=".ProfileActivity"/>
+
+        <activity android:name=".AfterLoginActivity"/>
+
+
+
     </application>
 
 </manifest>
