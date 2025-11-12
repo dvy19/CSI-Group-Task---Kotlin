@@ -13,59 +13,70 @@
         android:layout_margin="24dp"
         >
 
+        <ImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:background="@drawable/login_btn_2"
+            android:contentDescription="Profile Photo" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+        <Button
+            android:id="@+id/selectImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
-            />
+            android:text="Upload Photo"
+            android:layout_gravity="center" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
+            android:text="Education Certificate Image"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
 
-
-            />
+        <Button
+            android:id="@+id/selectEducationImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Education Image"
+            android:backgroundTint="#2196F3"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E Mail"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
+            android:text="Resume Image"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
 
+        <Button
+            android:id="@+id/selectResumeImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Resume Image"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp" />
 
-            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resume Document (PDF/DOC)"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/selectResumeDocumentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Resume Document"
+            android:backgroundTint="#FF9800"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp" />
+
 
         <TextView
             android:layout_marginTop="10dp"
@@ -77,6 +88,7 @@
             android:textSize="20sp"/>
 
         <EditText
+            android:id="@+id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/search_inp"
@@ -85,6 +97,60 @@
             android:maxLength="10"
             android:digits="0123456789"
             />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Role"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/job_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_inp"
+            android:padding="13dp"
+            />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Languages"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_inp"
+            android:padding="13dp"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Education"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_inp"
+            android:padding="13dp"
+
+            />
+
 
         <TextView
             android:layout_marginTop="10dp"
@@ -118,6 +184,7 @@
             android:textSize="20sp"/>
 
         <EditText
+            android:id="@+id/skill"
             android:layout_width="match_parent"
             android:layout_height="150dp"
 
@@ -139,6 +206,7 @@
             android:textSize="20sp"/>
 
         <EditText
+            android:id="@+id/experience"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:inputType="textMultiLine"
@@ -150,6 +218,9 @@
             />
 
         <Button
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/submit_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"

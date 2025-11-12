@@ -58,7 +58,7 @@ class SignupActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Signup Successful!", Toast.LENGTH_LONG).show()
-                           // val intent = Intent(this@SignupActivity, HomeActivity::class.java)
+                           val intent = Intent(this@SignupActivity, ProfileActivity::class.java)
                             startActivity(intent)
                         } else {
                             Toast.makeText(applicationContext, "Signup Failed: ${response.code()}", Toast.LENGTH_LONG).show()

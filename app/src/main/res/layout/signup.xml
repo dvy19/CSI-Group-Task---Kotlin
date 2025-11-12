@@ -9,9 +9,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="0dp"
+        android:paddingBottom="100dp"
         android:layout_marginBottom="100dp"
         android:gravity="center">
 
@@ -125,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/full_name"
-                android:textSize="12sp"/>
+                android:textSize="15sp"/>
 
             <EditText
                 android:id="@+id/full_name"
@@ -134,7 +135,7 @@
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
                 android:paddingEnd="140dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 />
@@ -145,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/E_mail"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/mail"
@@ -154,8 +155,8 @@
                 android:layout_height="56dp"
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
-                android:paddingEnd="140dp"
-                android:textSize="14sp"
+                android:paddingEnd="40dp"
+                android:textSize="18sp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
 
@@ -166,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pass"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/password"
@@ -175,7 +176,7 @@
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
                 android:paddingEnd="140dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 />
@@ -185,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/conf_pass"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/confirm_password"
@@ -194,7 +195,7 @@
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
                 android:paddingEnd="140dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 />

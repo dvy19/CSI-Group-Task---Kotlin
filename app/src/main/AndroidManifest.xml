@@ -30,6 +30,11 @@
 
 
         <activity android:name=".LogInActivity"/>
+        <activity android:name=".ProfileActivity"/>
+
+        <activity android:name=".AfterLoginActivity"/>
+
+
 
     </application>
 

@@ -1,5 +1,6 @@
 package com.example.jobportal
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -43,8 +44,9 @@ class LogInActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
-                        Toast.makeText(applicationContext, "Signup Successful!", Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(applicationContext, "Login Successful!", Toast.LENGTH_LONG).show()
+                        val intent= Intent(applicationContext, AfterLoginActivity::class.java)
+                        startActivity(intent)
                         val accessToken = loginResponse?.access
                         val refreshToken = loginResponse?.refresh
                     } else {

@@ -10,9 +10,9 @@ object SignUpRetrofitClient {
 
     // Create OkHttpClient with timeout settings
     private val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(30, TimeUnit.SECONDS) // Wait up to 30 seconds to connect
-        .readTimeout(30, TimeUnit.SECONDS)    // Wait up to 30 seconds for data
-        .writeTimeout(30, TimeUnit.SECONDS)   // Wait up to 30 seconds to send data
+        .connectTimeout(120, TimeUnit.SECONDS) // Wait up to 30 seconds to connect
+        .readTimeout(120, TimeUnit.SECONDS)    // Wait up to 30 seconds for data
+        .writeTimeout(120, TimeUnit.SECONDS)   // Wait up to 30 seconds to send data
         .retryOnConnectionFailure(true)       // Retry on connection failures
         .build()
 
