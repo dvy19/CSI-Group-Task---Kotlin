@@ -1,4 +1,5 @@
 <!-- res/layout/signup.xml -->
+<!-- res/layout/signup.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -124,10 +125,11 @@
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email Address"
+                android:text="@string/E_mail"
                 android:textSize="12sp"/>
 
             <EditText
+                android:id="@+id/mail"
 
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -146,10 +148,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email Address"
+                android:text="@string/pass"
                 android:textSize="12sp"/>
 
             <EditText
+                android:id="@+id/password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -197,6 +200,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/login_btn_2"
