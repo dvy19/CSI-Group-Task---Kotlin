@@ -6,13 +6,11 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 data class SignupRequest(
-    val username: String,
+    val full_name: String,
     val email: String,
     val password: String,
     val password2: String,
-    val first_name: String,
-    val last_name: String,
-    val phone: String
+
 )
 
 data class SignupResponse(
@@ -23,10 +21,9 @@ data class SignupResponse(
 )
 
 data class User(
-    val username: String,
+    val full_name: String,
     val email: String,
-    val first_name: String,
-    val last_name: String
+
 )
 
 interface JobSeekerApi {

@@ -1,0 +1,40 @@
+android.net.uri
+URI, uniform resource identifier to handle image paths, website url and resume doc file path which has to be uploaded by the user.
+
+import okhttp3.MultipartBody
+okhttp to make network request calls.
+MultipartBody = help to exchange used when need to send different types of files over the internet, text + image + docs
+
+import java.io.InputStream
+used to read/process resume uploaded, image uploaded. if not used, image would appear as broken.
+
+import java.io.FileOutputStream
+
+
+import java.io.File
+used to work with files and folders directly in device. can be used to delete resume to be uploaded later.
+
+private var selectedEducationImageUri: Uri? = null
+name of teh storage box, Uri? means path can be null. =null means start with a null.
+we can remove =null and declare as lateinit.
+
+companion object {
+        private const val REQUEST_EDUCATION_IMAGE = 100
+        private const val REQUEST_RESUME_IMAGE = 101
+        private const val REQUEST_RESUME_DOCUMENT = 102
+    }
+
+Your app says: "System, please let user pick an education image" → sends ticket #100
+User picks a file → system returns with result and says "this is for ticket #100"
+Your app knows: "Ah, this is the education image result!"
+
+
+val educationTextBody = education.toRequestBody("text/plain".toMediaType())
+toRequestBody converts all teh data into HTTP format to send over internet to backend.
+Without it: Server wouldn't understand how to handle mixed file types
+
+With it: Each piece gets proper MIME type labeling
+Server knows "this is text", "this is PDF", "this is image"
+
+
+selectedEducationImageUri?. , perform operation, ?. nul operator protects
