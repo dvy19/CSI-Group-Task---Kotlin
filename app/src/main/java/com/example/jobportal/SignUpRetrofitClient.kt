@@ -1,5 +1,6 @@
-package com.example.jobportal
-
+import com.example.jobportal.LoginApi
+import com.example.jobportal.ProfileApi
+import com.example.jobportal.SignupApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,20 +9,40 @@ import java.util.concurrent.TimeUnit
 object SignUpRetrofitClient {
     private const val BASE_URL = "https://jobseeker-backend-django.onrender.com/"
 
-    // Create OkHttpClient with timeout settings
     private val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(120, TimeUnit.SECONDS) // Wait up to 30 seconds to connect
-        .readTimeout(120, TimeUnit.SECONDS)    // Wait up to 30 seconds for data
-        .writeTimeout(120, TimeUnit.SECONDS)   // Wait up to 30 seconds to send data
-        .retryOnConnectionFailure(true)       // Retry on connection failures
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
+        .retryOnConnectionFailure(true)
         .build()
 
-    val instance: JobSeekerApi by lazy {
+    // For Signup operations
+    val signupInstance: SignupApi by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(okHttpClient) // Add the configured OkHttpClient
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(JobSeekerApi::class.java)
+            .create(SignupApi::class.java)
+    }
+
+    // For Login operations
+    val loginInstance: LoginApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(LoginApi::class.java)
+    }
+
+    // For Profile operations - ADD THIS
+    val profileInstance: ProfileApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ProfileApi::class.java)
     }
 }

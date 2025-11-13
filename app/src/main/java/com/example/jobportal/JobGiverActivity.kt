@@ -18,13 +18,8 @@ class JobGiverActivity : AppCompatActivity() {
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
         val tvTokenInfo = findViewById<TextView>(R.id.tvTokenInfo)
 
-        val addJob=findViewById<Button>(R.id.add_job)
 
-        addJob.setOnClickListener(){
-            val intent=Intent(this, AddJobActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+
 
         // Get saved tokens
         val accessToken = preferences.getAccessToken()
