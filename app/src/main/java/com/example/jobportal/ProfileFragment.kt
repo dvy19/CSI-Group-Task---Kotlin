@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+
+import android.widget.TextView
+
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
+
 
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var profileRepository: ProfileRepository
@@ -37,12 +42,18 @@ class ProfileFragment : Fragment() {
     private lateinit var btnFollow: Button
     private lateinit var btnMessage: Button
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        val textView = view.findViewById<TextView>(R.id.text_profile)
+        textView.text = "Your Profile Information"
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

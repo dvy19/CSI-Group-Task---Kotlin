@@ -43,6 +43,32 @@
         android:padding="32dp"
         android:visibility="gone" />
 
+    <!-- Add Post and Add Job Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/add_comm_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Post"
+            android:layout_margin="8dp" />
+
+        <Button
+            android:id="@+id/add_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Job"
+            android:layout_margin="8dp" />
+
+    </LinearLayout>
+
+
+
     <!-- Loading indicator -->
     <ProgressBar
         android:id="@+id/progressBar"

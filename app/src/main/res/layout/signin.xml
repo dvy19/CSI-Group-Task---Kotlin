@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/E_mail"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/mail"
@@ -135,8 +135,8 @@
                 android:layout_height="56dp"
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
-                android:paddingEnd="140dp"
-                android:textSize="14dp"
+                android:paddingEnd="40dp"
+                android:textSize="18dp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
 
@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pass"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/password"
@@ -159,7 +159,7 @@
                 android:background="@drawable/login_button"
                 android:paddingStart="14dp"
                 android:paddingEnd="140dp"
-                android:textSize="14dp"
+                android:textSize="18dp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 android:hint="........."
@@ -199,17 +199,51 @@
 
         </LinearLayout>
 
+        <!-- Role Radio Buttons -->
+        <RadioGroup
+            android:id="@+id/radioGroupRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/radioJobSeeker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Job Seeker"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioJobGiver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Recruiter" />
+
+        </RadioGroup>
+
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/login_btn_2"
             android:text="Log In"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="14dp"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"/>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -218,6 +252,16 @@
             android:layout_marginTop="34dp"
             android:textColor="@color/black"
             />
+
+        <TextView
+            android:id="@+id/tvSignUpRedirect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="@color/purple_500"
+            android:textStyle="bold" />
+
+
 
 
 

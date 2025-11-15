@@ -2,237 +2,167 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:background="@color/white">
-
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:orientation="vertical"
-        android:layout_margin="24dp"
-        >
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/profileImageView"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:background="@drawable/login_btn_2"
-            android:contentDescription="Profile Photo" />
-
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Photo"
-            android:layout_gravity="center" />
-
+        <!-- Education -->
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Education Certificate Image"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/selectEducationImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Education Image"
-            android:backgroundTint="#2196F3"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resume Image"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/selectResumeImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Resume Image"
-            android:backgroundTint="#4CAF50"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resume Document (PDF/DOC)"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/selectResumeDocumentButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Resume Document"
-            android:backgroundTint="#FF9800"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp" />
-
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
-            android:inputType="phone"
-            android:maxLength="10"
-            android:digits="0123456789"
-            />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Role"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/job_role"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
-            />
-
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Languages"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
-            />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Education"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/education"
+            android:id="@+id/etEducation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_inp"
-            android:padding="13dp"
+            android:hint="10th pass, 12th pass, graduate from college"
+            android:layout_marginBottom="16dp"/>
 
-            />
-
-
+        <!-- Experience -->
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bio"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/bioInput"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:hint="Write your bio here..."
-            android:inputType="textMultiLine"
-            android:gravity="top|start"
-            android:lines="5"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:background="@android:drawable/edit_text"
-            />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skills"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/skill"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-
-            android:inputType="textMultiLine"
-            android:gravity="top|start"
-            android:lines="5"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:background="@android:drawable/edit_text"
-            />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Experience"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/experience"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:inputType="textMultiLine"
-            android:gravity="top|start"
-            android:lines="5"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:background="@android:drawable/edit_text"
-            />
-
-        <Button
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/submit_info"
+            android:id="@+id/etExperience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:background="@drawable/login_btn_2"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            />
+            android:hint="2 yr backend, 1 yr frontend"
+            android:layout_marginBottom="16dp"/>
 
+        <!-- Languages -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Languages"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
+        <EditText
+            android:id="@+id/etLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="hindi, english"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Skills -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skills"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="django, react"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Education Certificate Image -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Education Certificate (Image)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEducationImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Education Certificate"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Profile Image -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile Picture"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnProfileImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Profile Picture"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Resume Document -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resume (PDF/DOC)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnResume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Resume"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Resume Image (Screenshot) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resume Screenshot (Image)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnResumeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Resume Screenshot"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- File Status -->
+        <TextView
+            android:id="@+id/tvFileStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No files selected"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Profile"
+            android:layout_marginTop="16dp"
+            android:background="@color/design_default_color_primary"/>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
 
     </LinearLayout>
-
 </ScrollView>
