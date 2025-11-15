@@ -127,7 +127,7 @@
             android:contentDescription="Dropdown" />
     </LinearLayout>
 
-    <!-- Filter Chips -->
+    <!-- Filter Chips IMAGE HERE 4 -->
     <HorizontalScrollView
         android:id="@+id/filterChipsScroll"
         android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="@drawable/chip_bg"
+
                 android:textColor="#666666"
                 android:textSize="13sp"
                 android:layout_marginEnd="8dp"
@@ -168,7 +168,7 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="@drawable/chip_bg"
+
                 android:textColor="#666666"
                 android:textSize="13sp"
                 android:layout_marginEnd="8dp"
@@ -184,7 +184,7 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="@drawable/chip_bg"
+
                 android:textColor="#666666"
                 android:textSize="13sp"
                 android:layout_marginEnd="8dp"
@@ -200,7 +200,7 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="@drawable/chip_bg"
+
                 android:textColor="#666666"
                 android:textSize="13sp"
                 android:clickable="true"
@@ -243,7 +243,7 @@
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/ic_sort"
+            android:src="@drawable/img"
             android:contentDescription="Sort"
             android:layout_marginStart="4dp" />
     </LinearLayout>
@@ -262,12 +262,12 @@
             android:orientation="vertical"
             android:paddingBottom="16dp">
 
-            <!-- Job Card 1 -->
+            <!-- Job Card 2 IMG HERE-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/card_bg"
+
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -283,8 +283,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/company_logo"
-                        android:background="@drawable/logo_bg"
+                        android:src="@drawable/img"
+
                         android:padding="8dp"
                         android:contentDescription="Company Logo" />
 

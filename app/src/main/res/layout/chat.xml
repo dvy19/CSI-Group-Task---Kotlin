@@ -22,7 +22,7 @@
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/img"
             android:tint="#FFFFFF"
             android:contentDescription="Back"
             android:clickable="true"
@@ -63,7 +63,7 @@
             android:id="@+id/btnMore"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_more_vert"
+            android:src="@drawable/img"
             android:tint="#FFFFFF"
             android:contentDescription="More options"
             android:clickable="true"
@@ -90,14 +90,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="8dp"
-            android:src="@drawable/ic_attach"
+            android:src="@drawable/img"
             android:tint="#666666"
             android:contentDescription="Attach file"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
-        <!-- Message Input Field -->
+        <!-- Message Input Field , IMAGES HERE-->
         <EditText
             android:id="@+id/editTextMessage"
             android:layout_width="0dp"
@@ -105,7 +105,6 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/message_input_bg"
             android:hint="Type a message..."
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="4"
@@ -121,7 +120,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="8dp"
-            android:src="@drawable/ic_send"
+            android:src="@drawable/img"
             android:tint="#1976D2"
             android:contentDescription="Send message"
             android:clickable="true"

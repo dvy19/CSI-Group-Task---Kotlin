@@ -33,9 +33,10 @@
 
             <!-- Gradient Overlay -->
             <View
+                android:id="@+id/gradientOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/img" />
+                android:background="@drawable/gradient_overlay" />
 
             <!-- Toolbar -->
             <androidx.appcompat.widget.Toolbar
@@ -49,7 +50,7 @@
                     android:id="@+id/btnBack"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/img"
+                    android:src="@drawable/ic_back"
                     android:contentDescription="Back"
                     android:clickable="true"
                     android:focusable="true"
@@ -61,7 +62,7 @@
                     android:layout_height="24dp"
                     android:layout_gravity="end"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/img"
+                    android:src="@drawable/ic_settings"
                     android:contentDescription="Settings"
                     android:clickable="true"
                     android:focusable="true"
@@ -71,8 +72,17 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- Loading ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -90,7 +100,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="-50dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,9 +131,9 @@
                             android:layout_alignBottom="@id/profileImage"
                             android:layout_marginEnd="4dp"
                             android:layout_marginBottom="4dp"
-                            android:background="@drawable/img"
+                            android:background="@drawable/edit_button_bg"
                             android:padding="6dp"
-                            android:src="@drawable/img"
+                            android:src="@drawable/ic_edit"
                             android:contentDescription="Edit profile"
                             android:clickable="true"
                             android:focusable="true" />
@@ -163,8 +174,9 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/img"
-                            android:contentDescription="Location Icon" />
+                            android:src="@drawable/ic_location"
+                            android:contentDescription="Location Icon"
+                            android:tint="#999999" />
 
                         <TextView
                             android:id="@+id/profileLocation"
@@ -301,7 +313,7 @@
                             android:layout_height="44dp"
                             android:layout_weight="1"
                             android:layout_marginEnd="6dp"
-                            android:background="@drawable/img"
+                            android:background="@drawable/button_primary_bg"
                             android:text="Follow"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
@@ -314,7 +326,7 @@
                             android:layout_height="44dp"
                             android:layout_weight="1"
                             android:layout_marginStart="6dp"
-                            android:background="@drawable/img"
+                            android:background="@drawable/button_secondary_bg"
                             android:text="Message"
                             android:textColor="#1976D2"
                             android:textSize="14sp"
@@ -330,7 +342,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -359,8 +372,9 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/img"
-                            android:contentDescription="Email Icon" />
+                            android:src="@drawable/ic_email"
+                            android:contentDescription="Email Icon"
+                            android:tint="#666666" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -377,6 +391,7 @@
                                 android:textSize="12sp" />
 
                             <TextView
+                                android:id="@+id/profileEmail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="john.doe@email.com"
@@ -397,7 +412,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -414,8 +430,9 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- Skills as simple TextViews instead of Chips -->
+                    <!-- Skills TextView -->
                     <TextView
+                        android:id="@+id/profileSkills"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Android • Kotlin • Java • UI/UX Design • Firebase"
