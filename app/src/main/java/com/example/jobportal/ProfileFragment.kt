@@ -4,22 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-
-import android.widget.TextView
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
-
 
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var profileRepository: ProfileRepository
@@ -42,18 +38,13 @@ class ProfileFragment : Fragment() {
     private lateinit var btnFollow: Button
     private lateinit var btnMessage: Button
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-
-        val textView = view.findViewById<TextView>(R.id.text_profile)
-        textView.text = "Your Profile Information"
-
-        return view
+        // Inflate the correct layout
+        return inflater.inflate(R.layout.profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,7 +89,6 @@ class ProfileFragment : Fragment() {
         }
 
         btnEditProfile.setOnClickListener {
-            // Navigate to edit profile screen
             Toast.makeText(context, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
         }
 
@@ -129,11 +119,7 @@ class ProfileFragment : Fragment() {
                 },
                 onFailure = { error ->
                     showLoading(false)
-                    Toast.makeText(
-                        context,
-                        "Error: ${error.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    handleError(error)
                 }
             )
         }
@@ -186,15 +172,15 @@ class ProfileFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-}
 
-private fun handleError(error: Throwable) {
-    val message = when {
-        error.message?.contains("401") == true -> "Session expired. Please login again."
-        error.message?.contains("404") == true -> "Profile not found."
-        error.message?.contains("timeout") == true -> "Request timeout. Please try again."
-        else -> "Error loading profile: ${error.message}"
+    private fun handleError(error: Throwable) {
+        val message = when {
+            error.message?.contains("401") == true -> "Session expired. Please login again."
+            error.message?.contains("404") == true -> "Profile not found."
+            error.message?.contains("timeout") == true -> "Request timeout. Please try again."
+            else -> "Error loading profile: ${error.message}"
+        }
+
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
-
-    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
