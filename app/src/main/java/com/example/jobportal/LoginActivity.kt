@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.jobportal.SignupActivity
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         val tvSignUpRedirect = findViewById<TextView>(R.id.tvSignUpRedirect)
 
+        val radioJobSeeker = findViewById<RadioButton>(R.id.radioJobSeeker)
+        val radioJobGiver = findViewById<RadioButton>(R.id.radioJobGiver)
+
         // Redirect to Signup
         tvSignUpRedirect.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
@@ -40,6 +45,16 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             println("DEBUG: Login button clicked")
+
+            // Moved role selection INSIDE the click listener
+            val role = when {
+                radioJobGiver.isChecked -> "job_giver"
+                radioJobSeeker.isChecked -> "job_seeker"  // Fixed typo: was "jobseeker"
+                else -> {
+                    Toast.makeText(this@LoginActivity, "Please select a role", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
 
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
@@ -57,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 password = password
             )
 
-            println("DEBUG: Making login API call")
+            println("DEBUG: Making login API call for role: $role")
             SignUpRetrofitClient.loginInstance.login(request)
                 .enqueue(object : Callback<LoginResponse> {
                     override fun onResponse(
@@ -83,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
                                 println("DEBUG: Login successful - Tokens saved!")
                                 println("DEBUG: Access Token: ${loginResponse.access}")
                                 println("DEBUG: Refresh Token: ${loginResponse.refresh}")
+                                println("DEBUG: Navigating to activity for role: $role")
 
                                 Toast.makeText(
                                     this@LoginActivity,
@@ -90,13 +106,13 @@ class LoginActivity : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
 
-                                // Navigate to main activity (adjust based on your app flow)
-                                /*val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = if (role == "job_giver") {
+                                    Intent(this@LoginActivity, MainActivity::class.java)
+                                } else {
+                                    Intent(this@LoginActivity, SeekerProfileActivity::class.java)
+                                }
                                 startActivity(intent)
-
-                                finish() // Close login activity
-
-                                 */
+                                finish()
 
                             } else {
                                 Toast.makeText(

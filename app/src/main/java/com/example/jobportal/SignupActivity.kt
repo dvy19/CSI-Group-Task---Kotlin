@@ -106,7 +106,7 @@ class SignupActivity : AppCompatActivity() {
 
                                 // Navigate to next activity based on role - MOVED THIS HERE
                                 val intent = if (role == "job_giver") {
-                                    Intent(this@SignupActivity, JobGiverActivity::class.java)
+                                    Intent(this@SignupActivity, MainActivity::class.java)
                                 } else {
                                     Intent(this@SignupActivity, SeekerProfileActivity::class.java)
                                 }

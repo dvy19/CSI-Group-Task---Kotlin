@@ -199,13 +199,39 @@
 
         </LinearLayout>
 
+        <!-- Role Radio Buttons -->
+        <RadioGroup
+            android:id="@+id/radioGroupRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/radioJobSeeker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Job Seeker"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioJobGiver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Recruiter" />
+
+        </RadioGroup>
+
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/login_btn_2"
             android:text="Log In"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="14dp"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="18sp"
