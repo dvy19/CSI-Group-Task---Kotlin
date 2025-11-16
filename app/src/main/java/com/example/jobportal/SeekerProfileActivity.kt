@@ -221,12 +221,6 @@ class SeekerProfileActivity : AppCompatActivity() {
                 println("DEBUG: Profile API response received - Success: ${response.isSuccessful}")
 
                 if (response.isSuccessful) {
-
-                    submitButton.setOnClickListener {
-                        val intent = Intent(this@SeekerProfileActivity , HomeActivity::class.java)
-                        startActivity(intent)
-                    }
-
                     val profileResponse = response.body()
 
                     if (profileResponse != null) {
@@ -235,9 +229,12 @@ class SeekerProfileActivity : AppCompatActivity() {
                         Toast.makeText(
                             this@SeekerProfileActivity,
                             "Profile Updated Successfully!",
-                            Toast.LENGTH_LONG
+                            Toast.LENGTH_SHORT
                         ).show()
 
+                        // Navigate to HomeActivity immediately after success
+                        val intent = Intent(this@SeekerProfileActivity, HomeActivity::class.java)
+                        startActivity(intent)
                         finish()
 
                     } else {
@@ -247,12 +244,6 @@ class SeekerProfileActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
-
-
-
-
-
-
                 } else {
                     val errorMessage = when (response.code()) {
                         400 -> "Please check your inputs"
