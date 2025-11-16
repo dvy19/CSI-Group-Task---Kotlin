@@ -158,9 +158,9 @@ class ProfileFragment : Fragment() {
         }
 
         // Load profile image
-        if (!profile.profilePicture.isNullOrEmpty()) {
+        if (!profile.profile_image.isNullOrEmpty()) {
             Glide.with(this)
-                .load(profile.profilePicture)
+                .load(profile.profile_image)
                 .placeholder(R.drawable.user_img)
                 .error(R.drawable.user_img)
                 .circleCrop()
