@@ -127,7 +127,7 @@ class ProfileFragment : Fragment() {
 
     private fun ProfileRepository.getProfile(token: String) {}
 
-    private fun updateUI(profile: ProfileResponse) {
+    private fun updateUI(profile: SeekerProfileResponse) {
         // Load cover image
         if (!profile.coverImage.isNullOrEmpty()) {
             Glide.with(this)

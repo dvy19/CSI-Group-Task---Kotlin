@@ -2,7 +2,7 @@ package com.example.jobportal
 
 import com.google.gson.annotations.SerializedName
 
-data class ProfileResponse(
+data class SeekerProfileResponse(
     @SerializedName("id")
     val id: Int,
 

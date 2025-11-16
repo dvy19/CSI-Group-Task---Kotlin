@@ -50,7 +50,6 @@
                     android:id="@+id/btnBack"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_back"
                     android:contentDescription="Back"
                     android:clickable="true"
                     android:focusable="true"
@@ -174,7 +173,6 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_location"
                             android:contentDescription="Location Icon"
                             android:tint="#999999" />
 

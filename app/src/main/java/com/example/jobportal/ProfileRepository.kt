@@ -1,16 +1,16 @@
 package com.example.jobportal
 
+import retrofit2.Response
+
 class ProfileRepository {
     private val apiService = RetrofitClient.apiService
 
-    suspend fun getProfile(token: String): Result<ProfileResponse> {
+    suspend fun getProfile(token: String): Result<SeekerProfileResponse> {
         return try {
             val response = apiService.getProfile("Bearer $token")
-            if (response.isSuccessful && response.body() != null) {
-                Result.success(response.body()!!)
-            } else {
-                Result.failure(Exception("Error: ${response.code()} - ${response.message()}"))
-            }
+            response.body()?.let {
+                Result.success(it)
+            } ?: Result.failure(Exception("Error: ${response.code()} - ${response.message()}"))
         } catch (e: Exception) {
             Result.failure(e)
         }

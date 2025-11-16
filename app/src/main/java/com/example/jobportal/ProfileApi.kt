@@ -5,10 +5,6 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
-// Profile Request - For multipart form data
-// Note: We don't need a data class for request since we're using @Part
-
-// Profile Response
 data class ProfileResponse(
     val education_text: String,
     val experience: String,

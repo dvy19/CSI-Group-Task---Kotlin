@@ -221,12 +221,16 @@ class SeekerProfileActivity : AppCompatActivity() {
                 println("DEBUG: Profile API response received - Success: ${response.isSuccessful}")
 
                 if (response.isSuccessful) {
+
+                    submitButton.setOnClickListener {
+                        val intent = Intent(this@SeekerProfileActivity , HomeActivity::class.java)
+                        startActivity(intent)
+                    }
+
                     val profileResponse = response.body()
 
                     if (profileResponse != null) {
                         println("DEBUG: Profile updated successfully!")
-                        println("DEBUG: Education: ${profileResponse.education_text}")
-                        println("DEBUG: Profile Image URL: ${profileResponse.profile_image}")
 
                         Toast.makeText(
                             this@SeekerProfileActivity,
@@ -243,6 +247,11 @@ class SeekerProfileActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+
+
+
+
+
 
                 } else {
                     val errorMessage = when (response.code()) {
