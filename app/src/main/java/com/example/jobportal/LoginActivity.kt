@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
             // Moved role selection INSIDE the click listener
             val role = when {
                 radioJobGiver.isChecked -> "job_giver"
-                radioJobSeeker.isChecked -> "job_seeker"  // Fixed typo: was "jobseeker"
+                radioJobSeeker.isChecked -> "job_seeker"
                 else -> {
                     Toast.makeText(this@LoginActivity, "Please select a role", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -89,28 +89,28 @@ class LoginActivity : AppCompatActivity() {
                             val loginResponse = response.body()
 
                             if (loginResponse != null) {
-                                // ✅ SAVE THE TOKENS HERE!
+                                // Save the tokens
                                 preferences.saveTokens(
                                     accessToken = loginResponse.access,
                                     refreshToken = loginResponse.refresh
                                 )
 
+                                // Save the user role for future reference
+                                preferences.saveUserRole(role)
+
                                 println("DEBUG: Login successful - Tokens saved!")
                                 println("DEBUG: Access Token: ${loginResponse.access}")
                                 println("DEBUG: Refresh Token: ${loginResponse.refresh}")
-                                println("DEBUG: Navigating to activity for role: $role")
+                                println("DEBUG: User Role: $role")
 
                                 Toast.makeText(
                                     this@LoginActivity,
                                     "Login Successful!",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
 
-                                val intent = if (role == "job_giver") {
-                                    Intent(this@LoginActivity, MainActivity::class.java)
-                                } else {
-                                    Intent(this@LoginActivity, SeekerProfileActivity::class.java)
-                                }
+                                // Navigate to HomeActivity for all users
+                                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                 startActivity(intent)
                                 finish()
 
@@ -174,3 +174,5 @@ class LoginActivity : AppCompatActivity() {
         println("DEBUG: LoginActivity onDestroy")
     }
 }
+
+private fun AppPreferences.saveUserRole(role: String) {}
