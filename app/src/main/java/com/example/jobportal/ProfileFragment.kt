@@ -1,5 +1,6 @@
 package com.example.jobportal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        println("DEBUG: ProfileFragment - onViewCreated")
 
         // Initialize
         appPreferences = AppPreferences(requireContext())
@@ -100,27 +103,43 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadProfileData() {
+        println("DEBUG: ProfileFragment - loadProfileData called")
+
         val token = appPreferences.getAccessToken()
 
+        println("DEBUG: ProfileFragment - Token is null: ${token == null}")
+        println("DEBUG: ProfileFragment - Token is empty: ${token?.isEmpty()}")
+
         if (token.isNullOrEmpty()) {
+            println("DEBUG: ProfileFragment - No token found, redirecting to login")
             Toast.makeText(context, "Please login first", Toast.LENGTH_SHORT).show()
+
+            // Redirect to login
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
             return
         }
 
+        println("DEBUG: ProfileFragment - Token found, loading profile")
         showLoading(true)
 
         lifecycleScope.launch {
+            println("DEBUG: ProfileFragment - Calling repository.getProfile()")
             val result = profileRepository.getProfile(token)
 
             result.fold(
                 onSuccess = { profile ->
                     showLoading(false)
-                    println("DEBUG: Profile loaded successfully: $profile")
+                    println("DEBUG: ProfileFragment - Profile loaded successfully")
+                    println("DEBUG: ProfileFragment - Profile data: $profile")
                     updateUI(profile)
                 },
                 onFailure = { error ->
                     showLoading(false)
-                    println("DEBUG: Profile loading failed: ${error.message}")
+                    println("DEBUG: ProfileFragment - Profile loading failed")
+                    println("DEBUG: ProfileFragment - Error: ${error.message}")
+                    println("DEBUG: ProfileFragment - Stack trace: ${error.stackTraceToString()}")
                     handleError(error)
                 }
             )
@@ -128,25 +147,26 @@ class ProfileFragment : Fragment() {
     }
 
     private fun updateUI(profile: ProfileResponse) {
-        println("DEBUG: Updating UI with profile data")
-        println("DEBUG: Profile image URL: ${profile.profile_image}")
-        println("DEBUG: Education: ${profile.education_text}")
-        println("DEBUG: Skills: ${profile.skills}")
+        println("DEBUG: ProfileFragment - Updating UI with profile data")
+        println("DEBUG: ProfileFragment - Profile image URL: ${profile.profile_image}")
+        println("DEBUG: ProfileFragment - Education: ${profile.education_text}")
+        println("DEBUG: ProfileFragment - Experience: ${profile.experience}")
+        println("DEBUG: ProfileFragment - Skills: ${profile.skills}")
+        println("DEBUG: ProfileFragment - Languages: ${profile.languages}")
+        println("DEBUG: ProfileFragment - Role: ${profile.role}")
+        println("DEBUG: ProfileFragment - User: ${profile.user}")
 
         // Load profile image
         if (!profile.profile_image.isNullOrEmpty()) {
+            println("DEBUG: ProfileFragment - Loading profile image from: ${profile.profile_image}")
             Glide.with(this)
                 .load(profile.profile_image)
                 .placeholder(R.drawable.user_img)
                 .error(R.drawable.user_img)
                 .circleCrop()
                 .into(profileImage)
-        }
-
-        // Load education image (if you have an ImageView for it in your layout)
-        if (!profile.education_image.isNullOrEmpty()) {
-            // Uncomment if you have an education image view
-            // Glide.with(this).load(profile.education_image).into(educationImageView)
+        } else {
+            println("DEBUG: ProfileFragment - No profile image URL available")
         }
 
         // Set text data based on your actual ProfileResponse fields
@@ -157,18 +177,16 @@ class ProfileFragment : Fragment() {
         profileBio.text = profile.experience ?: "No experience listed"
         profileSkills.text = profile.skills ?: "No skills listed"
 
-        // If you have these fields in your layout, update them
-        // profileEducation.text = profile.education_text ?: "No education listed"
-        // profileLanguages.text = profile.languages ?: "No languages listed"
-
-        // These fields don't exist in your API, so set default values or hide them
+        // These fields don't exist in your API, so set default values
         profileProfession.text = profile.role ?: "Job Seeker"
-        profileLocation.text = "Location not set" // Not in your API
+        profileLocation.text = "Location not set"
 
-        // Stats - not in your API, set defaults or hide these views
+        // Stats - not in your API, set defaults
         statsPostsCount.text = "0"
         statsFollowersCount.text = "0"
         statsFollowingCount.text = "0"
+
+        println("DEBUG: ProfileFragment - UI update completed")
     }
 
     private fun formatCount(count: Int): String {
@@ -181,19 +199,37 @@ class ProfileFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        println("DEBUG: ProfileFragment - Loading indicator: ${if (isLoading) "VISIBLE" else "GONE"}")
     }
 
     private fun handleError(error: Throwable) {
         val message = when {
             error.message?.contains("401") == true -> {
+                println("DEBUG: ProfileFragment - 401 error, clearing tokens")
                 appPreferences.clearTokens()
                 "Session expired. Please login again."
             }
-            error.message?.contains("404") == true -> "Profile not found."
-            error.message?.contains("timeout") == true -> "Request timeout. Please try again."
-            else -> "Error loading profile: ${error.message}"
+            error.message?.contains("404") == true -> {
+                println("DEBUG: ProfileFragment - 404 error")
+                "Profile not found."
+            }
+            error.message?.contains("timeout") == true -> {
+                println("DEBUG: ProfileFragment - Timeout error")
+                "Request timeout. Please try again."
+            }
+            else -> {
+                println("DEBUG: ProfileFragment - Other error")
+                "Error loading profile: ${error.message}"
+            }
         }
 
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+        // If 401, redirect to login
+        if (error.message?.contains("401") == true) {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 }

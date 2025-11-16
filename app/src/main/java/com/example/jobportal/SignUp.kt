@@ -15,12 +15,12 @@ data class SignupRequest(
 )
 
 data class SignupResponse(
-    val user: User,
+    val user: User1,  // ← CHANGED HERE (1)
     val refresh: String,
     val access: String
 )
 
-data class User(
+data class User1(  // ← CHANGED HERE (2)
     val full_name: String,
     val email: String
 )
