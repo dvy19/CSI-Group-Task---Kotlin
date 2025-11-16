@@ -112,8 +112,11 @@ class LoginActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                // Navigate to HomeActivity for all users
-                                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                                val intent = if (role == "job_giver") {
+                                    Intent(this@LoginActivity, MainActivity::class.java)
+                                } else {
+                                    Intent(this@LoginActivity, HomeActivity::class.java)
+                                }
                                 startActivity(intent)
                                 finish()
 
