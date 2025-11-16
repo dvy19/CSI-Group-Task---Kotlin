@@ -7,5 +7,5 @@ interface ApiService {
     @GET("auth/profile/")
     suspend fun getProfile(
         @Header("Authorization") token: String
-    ): Response<SeekerProfileResponse>
+    ): Response<ProfileResponse>
 }

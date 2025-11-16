@@ -12,12 +12,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var preferenceManager: PreferenceManager
+    private lateinit var appPreferences: AppPreferences
     private lateinit var profileRepository: ProfileRepository
 
     // Views
@@ -43,7 +42,6 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the correct layout
         return inflater.inflate(R.layout.profile, container, false)
     }
 
@@ -51,7 +49,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize
-        preferenceManager = PreferenceManager(requireContext())
+        appPreferences = AppPreferences(requireContext())
         profileRepository = ProfileRepository()
 
         // Find views
@@ -102,7 +100,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadProfileData() {
-        val token = preferenceManager.getAuthToken()
+        val token = appPreferences.getAccessToken()
 
         if (token.isNullOrEmpty()) {
             Toast.makeText(context, "Please login first", Toast.LENGTH_SHORT).show()
@@ -112,53 +110,65 @@ class ProfileFragment : Fragment() {
         showLoading(true)
 
         lifecycleScope.launch {
-            profileRepository.getProfile(token).fold(
+            val result = profileRepository.getProfile(token)
+
+            result.fold(
                 onSuccess = { profile ->
                     showLoading(false)
+                    println("DEBUG: Profile loaded successfully: $profile")
                     updateUI(profile)
                 },
                 onFailure = { error ->
                     showLoading(false)
+                    println("DEBUG: Profile loading failed: ${error.message}")
                     handleError(error)
                 }
             )
         }
     }
 
-    private fun ProfileRepository.getProfile(token: String) {}
-
-    private fun updateUI(profile: SeekerProfileResponse) {
-        // Load cover image
-        if (!profile.coverImage.isNullOrEmpty()) {
-            Glide.with(this)
-                .load(profile.coverImage)
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img)
-                .into(coverImage)
-        }
+    private fun updateUI(profile: ProfileResponse) {
+        println("DEBUG: Updating UI with profile data")
+        println("DEBUG: Profile image URL: ${profile.profile_image}")
+        println("DEBUG: Education: ${profile.education_text}")
+        println("DEBUG: Skills: ${profile.skills}")
 
         // Load profile image
-        if (!profile.profilePicture.isNullOrEmpty()) {
+        if (!profile.profile_image.isNullOrEmpty()) {
             Glide.with(this)
-                .load(profile.profilePicture)
+                .load(profile.profile_image)
                 .placeholder(R.drawable.user_img)
                 .error(R.drawable.user_img)
                 .circleCrop()
                 .into(profileImage)
         }
 
-        // Set text data
-        profileName.text = profile.getFullName()
-        profileProfession.text = profile.profession ?: "Not specified"
-        profileLocation.text = profile.location ?: "Location not set"
-        profileBio.text = profile.bio ?: "No bio available"
-        profileEmail.text = profile.email
-        profileSkills.text = profile.getSkillsString()
+        // Load education image (if you have an ImageView for it in your layout)
+        if (!profile.education_image.isNullOrEmpty()) {
+            // Uncomment if you have an education image view
+            // Glide.with(this).load(profile.education_image).into(educationImageView)
+        }
 
-        // Set stats
-        statsPostsCount.text = profile.postsCount?.toString() ?: "0"
-        statsFollowersCount.text = formatCount(profile.followersCount ?: 0)
-        statsFollowingCount.text = profile.followingCount?.toString() ?: "0"
+        // Set text data based on your actual ProfileResponse fields
+        profileName.text = profile.user?.username ?: "User"
+        profileEmail.text = profile.user?.email ?: "Email not available"
+
+        // Use the actual fields from your ProfileResponse
+        profileBio.text = profile.experience ?: "No experience listed"
+        profileSkills.text = profile.skills ?: "No skills listed"
+
+        // If you have these fields in your layout, update them
+        // profileEducation.text = profile.education_text ?: "No education listed"
+        // profileLanguages.text = profile.languages ?: "No languages listed"
+
+        // These fields don't exist in your API, so set default values or hide them
+        profileProfession.text = profile.role ?: "Job Seeker"
+        profileLocation.text = "Location not set" // Not in your API
+
+        // Stats - not in your API, set defaults or hide these views
+        statsPostsCount.text = "0"
+        statsFollowersCount.text = "0"
+        statsFollowingCount.text = "0"
     }
 
     private fun formatCount(count: Int): String {
@@ -175,7 +185,10 @@ class ProfileFragment : Fragment() {
 
     private fun handleError(error: Throwable) {
         val message = when {
-            error.message?.contains("401") == true -> "Session expired. Please login again."
+            error.message?.contains("401") == true -> {
+                appPreferences.clearTokens()
+                "Session expired. Please login again."
+            }
             error.message?.contains("404") == true -> "Profile not found."
             error.message?.contains("timeout") == true -> "Request timeout. Please try again."
             else -> "Error loading profile: ${error.message}"
