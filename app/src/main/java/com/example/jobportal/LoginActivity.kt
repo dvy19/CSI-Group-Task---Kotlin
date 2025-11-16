@@ -109,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = if (role == "job_giver") {
                                     Intent(this@LoginActivity, MainActivity::class.java)
                                 } else {
-                                    Intent(this@LoginActivity, SeekerProfileActivity::class.java)
+                                    Intent(this@LoginActivity, HomeActivity::class.java)
                                 }
                                 startActivity(intent)
                                 finish()

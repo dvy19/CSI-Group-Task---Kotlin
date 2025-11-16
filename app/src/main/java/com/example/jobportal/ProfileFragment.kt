@@ -11,13 +11,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
-
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var preferenceManager: PreferenceManager
+    private lateinit var appPreferences: AppPreferences
     private lateinit var profileRepository: ProfileRepository
 
     // Views
@@ -43,19 +41,21 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the correct layout
         return inflater.inflate(R.layout.profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize
-        preferenceManager = PreferenceManager(requireContext())
+        // Initialize AppPreferences
+        appPreferences = AppPreferences(requireContext())
         profileRepository = ProfileRepository()
 
         // Find views
         initializeViews(view)
+
+        // Debug token status
+        debugTokenStatus()
 
         // Set up click listeners
         setupClickListeners()
@@ -83,6 +83,14 @@ class ProfileFragment : Fragment() {
         btnMessage = view.findViewById(R.id.btnMessage)
     }
 
+    private fun debugTokenStatus() {
+        val token = appPreferences.getAccessToken()
+        println("DEBUG TOKEN STATUS:")
+        println("Token exists: ${!token.isNullOrEmpty()}")
+        println("Token length: ${token?.length ?: 0}")
+        println("Token preview: ${token?.take(20)}...")
+    }
+
     private fun setupClickListeners() {
         btnBack.setOnClickListener {
             requireActivity().onBackPressed()
@@ -102,33 +110,45 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadProfileData() {
-        val token = preferenceManager.getAuthToken()
+        val token = appPreferences.getAccessToken()
 
         if (token.isNullOrEmpty()) {
             Toast.makeText(context, "Please login first", Toast.LENGTH_SHORT).show()
+            println("DEBUG: Token is null or empty")
             return
         }
 
+        println("DEBUG: Token found, loading profile...")
         showLoading(true)
 
         lifecycleScope.launch {
-            profileRepository.getProfile(token).fold(
-                onSuccess = { profile ->
-                    showLoading(false)
-                    updateUI(profile)
-                },
-                onFailure = { error ->
-                    showLoading(false)
-                    handleError(error)
-                }
-            )
+            try {
+                println("DEBUG: Making API call...")
+                val result = profileRepository.getProfile(token)
+
+                result.fold(
+                    onSuccess = { profile ->
+                        println("DEBUG: Profile loaded successfully: ${profile.getFullName()}")
+                        showLoading(false)
+                        updateUI(profile)
+                    },
+                    onFailure = { error ->
+                        println("DEBUG: Profile load failed: ${error.message}")
+                        showLoading(false)
+                        handleError(error)
+                    }
+                )
+            } catch (e: Exception) {
+                println("DEBUG: Exception in loadProfileData: ${e.message}")
+                showLoading(false)
+                handleError(e)
+            }
         }
     }
 
-    private fun ProfileRepository.getProfile(token: String) {}
-
     private fun updateUI(profile: SeekerProfileResponse) {
-        // Load cover image
+        // Load cover image (uncomment when you have Glide setup)
+        /*
         if (!profile.coverImage.isNullOrEmpty()) {
             Glide.with(this)
                 .load(profile.coverImage)
@@ -146,6 +166,7 @@ class ProfileFragment : Fragment() {
                 .circleCrop()
                 .into(profileImage)
         }
+        */
 
         // Set text data
         profileName.text = profile.getFullName()
@@ -159,6 +180,9 @@ class ProfileFragment : Fragment() {
         statsPostsCount.text = profile.postsCount?.toString() ?: "0"
         statsFollowersCount.text = formatCount(profile.followersCount ?: 0)
         statsFollowingCount.text = profile.followingCount?.toString() ?: "0"
+
+        // Show success message
+        Toast.makeText(context, "Profile loaded successfully!", Toast.LENGTH_SHORT).show()
     }
 
     private fun formatCount(count: Int): String {
@@ -175,12 +199,19 @@ class ProfileFragment : Fragment() {
 
     private fun handleError(error: Throwable) {
         val message = when {
-            error.message?.contains("401") == true -> "Session expired. Please login again."
+            error.message?.contains("401") == true -> {
+                // Clear tokens and redirect to login
+                appPreferences.clearTokens()
+                "Session expired. Please login again."
+            }
             error.message?.contains("404") == true -> "Profile not found."
+            error.message?.contains("Network error") == true -> "Check your internet connection"
             error.message?.contains("timeout") == true -> "Request timeout. Please try again."
-            else -> "Error loading profile: ${error.message}"
+            error.message?.contains("Empty response") == true -> "No profile data received"
+            else -> "Error loading profile: ${error.message ?: "Unknown error"}"
         }
 
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        println("ERROR: $message")
     }
 }

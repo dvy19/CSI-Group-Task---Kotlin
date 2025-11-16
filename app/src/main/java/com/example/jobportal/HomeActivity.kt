@@ -100,27 +100,15 @@ class HomeActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        // Check if fragment already exists
-        val existingFragment = fragmentManager.findFragmentByTag(tag)
+        // Replace the fragment in the container
+        fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
 
-        if (existingFragment != null) {
-            // If fragment exists, show it and hide current
-            if (::currentFragment.isInitialized) {
-                fragmentTransaction.hide(currentFragment)
-            }
-            fragmentTransaction.show(existingFragment)
-            currentFragment = existingFragment
-        } else {
-            // If fragment doesn't exist, add it
-            if (::currentFragment.isInitialized) {
-                fragmentTransaction.hide(currentFragment)
-            }
-            // Use proper fragment container (you'll need to add this to XML)
-            fragmentTransaction.add(R.id.scrollView, fragment, tag)
-            currentFragment = fragment
-        }
+        // Add to back stack if needed
+        // fragmentTransaction.addToBackStack(tag)
 
         fragmentTransaction.commit()
+
+        currentFragment = fragment
     }
 
     private fun setActiveTab(tab: View, icon: ImageView, text: TextView) {
