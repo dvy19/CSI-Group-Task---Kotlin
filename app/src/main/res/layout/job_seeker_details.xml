@@ -8,36 +8,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp">
+
 
         <!-- Profile Image Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profile Image"
-            android:textSize="16sp"
+            android:text="Enter Your Details Here"
+            android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginBottom="8dp" />
 
-        <ImageView
-            android:id="@+id/profileImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="16dp" />
 
         <Button
+            android:background="#4E61D3"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:padding="10dp"
             android:id="@+id/uploadProfileImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload Profile Image"
+            android:text="Profile Image"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
         <!-- Experience Section -->
         <TextView
+            android:textColor="@color/black"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Experience"
@@ -46,6 +48,10 @@
             android:layout_marginBottom="8dp" />
 
         <EditText
+            android:background="@drawable/login_button"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
             android:id="@+id/experienceEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +63,7 @@
 
         <!-- Education Text Section -->
         <TextView
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Education"
@@ -65,6 +72,10 @@
             android:layout_marginBottom="8dp" />
 
         <EditText
+            android:background="@drawable/login_button"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
             android:id="@+id/educationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,25 +85,15 @@
             android:gravity="top"
             android:layout_marginBottom="16dp" />
 
-        <!-- Education Image Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Education Certificate Image"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
 
-        <ImageView
-            android:id="@+id/educationImageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="16dp" />
+
+
 
         <Button
+            android:background="#4E61D3"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:padding="10dp"
             android:id="@+id/uploadEducationImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +103,7 @@
 
         <!-- Skills Section -->
         <TextView
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Skills"
@@ -110,6 +112,11 @@
             android:layout_marginBottom="8dp" />
 
         <EditText
+            android:background="@drawable/login_button"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:id="@+id/skillsEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,6 +126,7 @@
 
         <!-- Languages Section -->
         <TextView
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Languages"
@@ -127,6 +135,11 @@
             android:layout_marginBottom="8dp" />
 
         <EditText
+            android:background="@drawable/login_button"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:id="@+id/languagesEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,6 +149,7 @@
 
         <!-- Resume Upload Section -->
         <TextView
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Resume File"
@@ -144,6 +158,10 @@
             android:layout_marginBottom="8dp" />
 
         <Button
+            android:background="#4E61D3"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:padding="10dp"
             android:id="@+id/uploadResumeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -175,25 +193,25 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/resumeImageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="16dp" />
+
 
         <Button
+            android:padding="15dp"
+            android:background="#4E61D3"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
             android:id="@+id/uploadResumeImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload Resume Image"
+            android:text="Resume Image"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
         <!-- Submit Button -->
         <Button
+            android:background="#4E61D3"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
             android:id="@+id/submitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

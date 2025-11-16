@@ -13,6 +13,7 @@
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
+        android:backgroundTint="@color/purple_700"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp"
@@ -41,7 +43,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                android:tint="#1976D2"
+                android:tint="@color/white"
                 android:contentDescription="Home" />
 
             <TextView
@@ -50,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:textSize="12sp"
-                android:textColor="#1976D2"
+                android:textColor="@color/white"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
@@ -73,7 +75,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_add_circle"
-
+                app:tint="@color/white"
                 android:contentDescription="Post" />
 
             <TextView
@@ -82,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="Jobs"
                 android:textSize="12sp"
-                android:textColor="#666666"
+                android:textColor="@color/white"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
@@ -107,18 +109,19 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_notifications"
-
+                    app:tint="@color/white"
                     android:contentDescription="Notifications" />
 
             </FrameLayout>
 
             <TextView
+
                 android:id="@+id/textNotifications"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chat"
                 android:textSize="12sp"
-                android:textColor="#666666"
+                android:textColor="@color/white"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
@@ -140,6 +143,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_work"
+                app:tint="@color/white"
 
                 android:contentDescription="Jobs" />
 
@@ -149,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:text="Profile"
                 android:textSize="12sp"
-                android:textColor="#666666"
+                android:textColor="@color/white"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 

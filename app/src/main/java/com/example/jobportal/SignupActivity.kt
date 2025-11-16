@@ -2,6 +2,9 @@ package com.example.jobportal
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.view.MotionEvent
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
@@ -11,6 +14,8 @@ import retrofit2.Response
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var preferences: AppPreferences
+    private lateinit var Password: EditText
+    private lateinit var ConfirmPassword: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,23 +28,23 @@ class SignupActivity : AppCompatActivity() {
 
         val Fullname = findViewById<EditText>(R.id.etFullName)
         val mail = findViewById<EditText>(R.id.etEmail)
-        val Password = findViewById<EditText>(R.id.etPassword)
-        val ConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
+        Password = findViewById<EditText>(R.id.etPassword)
+        ConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
         val radioJobSeeker = findViewById<RadioButton>(R.id.radioJobSeeker)
         val radioJobGiver = findViewById<RadioButton>(R.id.radioJobGiver)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
-        val toLogin=findViewById<TextView>(R.id.tvLogin)
+        val toLogin = findViewById<TextView>(R.id.tvLogin)
 
-        toLogin.setOnClickListener(){
+        // Add password toggle functionality
+        setupPasswordToggle()
 
-            val intent=Intent(this, LoginActivity::class.java)
+        toLogin.setOnClickListener() {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-
         }
-
 
         btnSignUp.setOnClickListener {
             println("DEBUG: Signup button clicked")
@@ -51,9 +56,6 @@ class SignupActivity : AppCompatActivity() {
 
             // Get selected role
             val role = if (radioJobGiver.isChecked) "job_giver" else "jobseeker"
-
-            // REMOVED: The intent creation and startActivity calls from here
-            // They should only be called after successful signup
 
             if (!validateInput(fullName, email, password, password2)) {
                 return@setOnClickListener
@@ -68,7 +70,7 @@ class SignupActivity : AppCompatActivity() {
                 email = email,
                 password = password,
                 password2 = password2,
-                role = role  // Add the role
+                role = role
             )
 
             println("DEBUG: Making API call")
@@ -104,14 +106,15 @@ class SignupActivity : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
 
-                                // Navigate to next activity based on role - MOVED THIS HERE
+                                // Navigate to next activity based on role
                                 val intent = if (role == "job_giver") {
                                     Intent(this@SignupActivity, MainActivity::class.java)
                                 } else {
                                     Intent(this@SignupActivity, SeekerProfileActivity::class.java)
                                 }
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
-                                finish() // Close signup activity
+                                finish()
 
                             } else {
                                 Toast.makeText(
@@ -152,20 +155,53 @@ class SignupActivity : AppCompatActivity() {
                 })
         }
 
-
-
-
-
-
-
-
-        val loginBtn=findViewById<TextView>(R.id.tvLogin)
-        loginBtn.setOnClickListener{
-            val intent=Intent(this, LoginActivity::class.java)
+        val loginBtn = findViewById<TextView>(R.id.tvLogin)
+        loginBtn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+    }
 
+    private fun setupPasswordToggle() {
+        // For Password field
+        Password.setOnTouchListener { v, event ->
+            val drawableRight = 2
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= (Password.right - Password.compoundDrawables[drawableRight].bounds.width())) {
+                    togglePasswordVisibility(Password)
+                    return@setOnTouchListener true
+                }
+            }
+            false
         }
 
+        // For Confirm Password field
+        ConfirmPassword.setOnTouchListener { v, event ->
+            val drawableRight = 2
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= (ConfirmPassword.right - ConfirmPassword.compoundDrawables[drawableRight].bounds.width())) {
+                    togglePasswordVisibility(ConfirmPassword)
+                    return@setOnTouchListener true
+                }
+            }
+            false
+        }
+    }
+
+    private fun togglePasswordVisibility(editText: EditText) {
+        val selection = editText.selectionEnd
+        if (editText.transformationMethod == PasswordTransformationMethod.getInstance()) {
+            // Show password
+            editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            // Change drawable to eye off icon
+            editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off, 0)
+        } else {
+            // Hide password
+            editText.transformationMethod = PasswordTransformationMethod.getInstance()
+            // Change drawable to eye icon
+            editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility, 0)
+        }
+        editText.setSelection(selection)
     }
 
     private fun validateInput(

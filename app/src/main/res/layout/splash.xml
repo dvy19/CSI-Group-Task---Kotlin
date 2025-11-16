@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F0">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:src="@drawable/logo"
             android:contentDescription="app_logo" />
 
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Next"
-            android:textSize="32sp"
+            android:textSize="35sp"
             android:textColor="#2C3E50"
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.02" />
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Step"
-            android:textSize="32sp"
+            android:textSize="35sp"
             android:textColor="#6B8CAE"
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.02" />
