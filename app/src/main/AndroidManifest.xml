@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +14,7 @@
         android:theme="@style/Theme.Fragment"
         tools:targetApi="31">
 
+        <!-- Splash Screen - Entry Point -->
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -23,18 +25,15 @@
             </intent-filter>
         </activity>
 
+        <!-- Onboarding -->
         <activity
             android:name=".OnboardingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
+        <!-- Authentication -->
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
-
-        <activity
-            android:name=".JobGiverActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
@@ -43,17 +42,35 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
+        <!-- Role Selection -->
+        <activity
+            android:name=".JobGiverActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
+
         <activity
             android:name=".JobSeekerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
+        <!-- Profile Setup -->
         <activity
             android:name=".SeekerProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
+        <!-- Main App -->
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
 
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
+
+        <!-- Feature Activities -->
         <activity
             android:name=".AddJobActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -63,18 +80,6 @@
             android:name=".CommunityPostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
-        
-
-
-
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
-
-
-
-
 
     </application>
 

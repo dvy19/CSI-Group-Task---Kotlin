@@ -8,15 +8,18 @@ import retrofit2.http.*
 
 // Response for UPDATE profile (PUT request)
 data class UpdateProfileResponse(
-    val skills: String,
-    val role: String,
+    val education_text: String?,
+    val experience: String?,
+    val languages: String?,
+    val skills: String?,
+    val role: String?,
     val education_image: String?,
     val profile_image: String?,
     val resume: String?,
     val resume_image: String?
 )
 
-// Response for GET profile
+// Response for GET profile - THIS IS THE ONE TO USE
 data class ProfileResponse(
     val education_text: String?,
     val experience: String?,
