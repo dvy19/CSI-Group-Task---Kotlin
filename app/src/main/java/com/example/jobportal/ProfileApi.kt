@@ -36,7 +36,8 @@ data class ProfileResponse(
 data class User(
     val id: Int?,
     val email: String?,
-    val username: String?
+    val username: String?,
+    val full_name: String?  // ← Add this field
 )
 
 // Profile Interface

@@ -172,6 +172,9 @@ class ProfileFragment : Fragment() {
         println("DEBUG: ProfileFragment - Languages: ${profile.languages}")
         println("DEBUG: ProfileFragment - Role: ${profile.role}")
         println("DEBUG: ProfileFragment - User: ${profile.user}")
+        println("DEBUG: ProfileFragment - User username: ${profile.user?.username}")
+        println("DEBUG: ProfileFragment - User full_name: ${profile.user?.full_name}")
+        println("DEBUG: ProfileFragment - User email: ${profile.user?.email}")
 
         // Load profile image
         if (!profile.profile_image.isNullOrEmpty()) {
@@ -186,8 +189,14 @@ class ProfileFragment : Fragment() {
             println("DEBUG: ProfileFragment - No profile image URL available")
         }
 
-        // Set text data based on your actual ProfileResponse fields
-        profileName.text = profile.user?.username ?: "User"
+        // FIXED: Try full_name first, then username, then default to "User"
+        val displayName = profile.user?.full_name?.takeIf { it.isNotBlank() }
+            ?: profile.user?.username?.takeIf { it.isNotBlank() }
+            ?: "User"
+
+        profileName.text = displayName
+        println("DEBUG: ProfileFragment - Display name set to: $displayName")
+
         profileEmail.text = profile.user?.email ?: "Email not available"
 
         // Use the actual fields from your ProfileResponse

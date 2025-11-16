@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img"
+                android:src="@drawable/img_3"
                 android:contentDescription="Cover Image"
                 app:layout_collapseMode="parallax" />
 
@@ -71,13 +71,60 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- Profile Image Overlapping Cover - CENTERED HORIZONTALLY -->
+    <!-- Profile Image Overlapping Cover - CENTERED HORIZONTALLY -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_img"
+                    android:contentDescription="Profile Image" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Edit Profile Button -->
+            <ImageView
+                android:id="@+id/btnEditProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/edit_button_bg"
+                android:padding="8dp"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="Edit profile"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="10dp" />
+        </FrameLayout>
+    </FrameLayout>
     <!-- Loading ProgressBar -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:elevation="12dp" />
 
     <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
@@ -89,15 +136,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="70dp">
 
-            <!-- Profile Header Card -->
+            <!-- Profile Header Card - NO PROFILE IMAGE HERE ANYMORE -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="-50dp"
+                android:layout_marginTop="0dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="#FFFFFF">
@@ -106,37 +154,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <!-- Profile Picture -->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/profileImage"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/user_img"
-                            android:contentDescription="Profile Image" />
-
-                        <!-- Edit Profile Button -->
-                        <ImageView
-                            android:id="@+id/btnEditProfile"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_alignEnd="@id/profileImage"
-                            android:layout_alignBottom="@id/profileImage"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="4dp"
-                            android:background="@drawable/edit_button_bg"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_edit"
-                            android:contentDescription="Edit profile"
-                            android:clickable="true"
-                            android:focusable="true" />
-                    </RelativeLayout>
+                    android:padding="20dp"
+                    android:paddingTop="10dp">
 
                     <!-- Name -->
                     <TextView
