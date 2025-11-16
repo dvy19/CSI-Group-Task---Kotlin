@@ -5,21 +5,11 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- Main Content ScrollView -->
-    <ScrollView
-        android:id="@+id/scrollView"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigation"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-        </LinearLayout>
-    </ScrollView>
+        android:layout_above="@+id/bottomNavigation" />
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
@@ -83,7 +73,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_add_circle"
-                android:tint="#666666"
+
                 android:contentDescription="Post" />
 
             <TextView
@@ -117,7 +107,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_notifications"
-                    android:tint="#666666"
+
                     android:contentDescription="Notifications" />
 
             </FrameLayout>
@@ -150,7 +140,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_work"
-                android:tint="#666666"
+
                 android:contentDescription="Jobs" />
 
             <TextView
