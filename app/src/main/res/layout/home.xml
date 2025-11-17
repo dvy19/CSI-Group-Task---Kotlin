@@ -1,691 +1,812 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Main Home Screen Layout - activity_home.xml -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#FAFAFA"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Header Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:background="@android:color/darker_gray"
-                android:contentDescription="profile_pic" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nabillla"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="UI/UX Designer"
-                    android:textSize="14sp"
-                    android:textColor="#666666" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_popup_reminder"
-                android:contentDescription="notifications" />
-
-        </LinearLayout>
+        android:paddingBottom="80dp">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:background="@android:color/white"
-            android:padding="12dp"
-            android:gravity="center_vertical">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:hint="Search Job"
-                android:textSize="14sp"
-                android:background="@android:color/transparent"
-                android:inputType="text" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/img_1"
-                android:contentDescription="filter" />
-
-        </LinearLayout>
-
-        <!-- Banner Card -->
+        <!-- Search Bar -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#2C3E50">
+            app:cardElevation="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5 ways to increase your"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:tint="#9E9E9E" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/searchBar"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="chances of getting hired"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp" />
+                    android:background="@android:color/transparent"
+                    android:hint="Search Jobs"
+                    android:textColorHint="#9E9E9E"
+                    android:textColor="#212121"
+                    android:textSize="15sp"
+                    android:padding="12dp"
+                    android:inputType="text"
+                    android:maxLines="1" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Read Article"
-                    android:textSize="12sp"
-                    android:backgroundTint="#5DADE2"
-                    android:textColor="#FFFFFF" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="#9E9E9E" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Current Jobs Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Curated Jobs For You"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <HorizontalScrollView
+        <!-- Banner Card -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:scrollbars="none">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            android:backgroundTint="#1A237E">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <!-- Job Card 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50 others are reviewing your"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Interview of getting hired"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@android:drawable/ic_menu_gallery"
-                            android:contentDescription="job_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="UI Designer"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Google Inc"
-                            android:textSize="12sp"
-                            android:textColor="#666666" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="$50k - $80k"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#2196F3" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Job Card 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@android:drawable/ic_menu_manage"
-                            android:contentDescription="job_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Digital Marketer"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Meta Inc"
-                            android:textSize="12sp"
-                            android:textColor="#666666" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="$45k - $70k"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#2196F3" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Job Card 3 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="160dp"
-                    android:layout_height="180dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@android:drawable/ic_menu_info_details"
-                            android:contentDescription="job_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Data Analyst"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Amazon"
-                            android:textSize="12sp"
-                            android:textColor="#666666" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="$60k - $90k"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#2196F3" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
+                <Button
+                    android:id="@+id/bannerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Read More"
+                    android:textColor="#1A237E"
+                    android:textSize="13sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#FFFFFF"
+                    android:layout_marginTop="12dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="8dp" />
 
             </LinearLayout>
 
-        </HorizontalScrollView>
+        </androidx.cardview.widget.CardView>
 
-        <!-- Specialization Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Specialization"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
+        <!-- Curated Jobs Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="12dp">
+                android:text="Curated Jobs For You"
+                android:textSize="18sp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@android:drawable/ic_menu_edit"
-                    android:contentDescription="finance" />
+            <!-- Job Category Pills -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="16dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Finance"
-                    android:textSize="14sp"
-                    android:textColor="#000000" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:background="@drawable/bg_pill_selected"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginEnd="8dp" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Remote"
+                        android:textColor="#757575"
+                        android:textSize="13sp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Time"
+                        android:textColor="#757575"
+                        android:textSize="13sp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Part Time"
+                        android:textColor="#757575"
+                        android:textSize="13sp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="8dp" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <!-- Job Cards Horizontal Scroll -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="12dp">
+                android:scrollbars="none"
+                android:layout_marginBottom="24dp">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@android:drawable/ic_menu_mapmode"
-                    android:contentDescription="technology" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Technology"
-                    android:textSize="14sp"
-                    android:textColor="#000000" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <!-- Job Card 1 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/img_5"
+                                android:background="@drawable/bg_icon_circle"
+                                android:padding="8dp"
+                                android:layout_marginBottom="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dribbble"
+                                android:textSize="15sp"
+                                android:textColor="#212121"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="UI designer"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Remote"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Contract"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp"
+                                    android:layout_marginStart="4dp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2 days ago"
+                                android:textSize="11sp"
+                                android:textColor="#BDBDBD"
+                                android:layout_marginTop="12dp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Job Card 2 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/img_6"
+                                android:background="@drawable/bg_icon_circle"
+                                android:padding="8dp"
+                                android:layout_marginBottom="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pinterest"
+                                android:textSize="15sp"
+                                android:textColor="#212121"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Digital Marketing"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Remote"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Full-time"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp"
+                                    android:layout_marginStart="4dp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3 days ago"
+                                android:textSize="11sp"
+                                android:textColor="#BDBDBD"
+                                android:layout_marginTop="12dp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Job Card 3 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/img_7"
+                                android:background="@drawable/bg_icon_circle"
+                                android:padding="8dp"
+                                android:layout_marginBottom="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LinkedIn"
+                                android:textSize="15sp"
+                                android:textColor="#212121"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lead Designer"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Remote"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Full-time"
+                                    android:textSize="11sp"
+                                    android:textColor="#757575"
+                                    android:gravity="center"
+                                    android:background="@drawable/bg_tag"
+                                    android:paddingVertical="4dp"
+                                    android:layout_marginStart="4dp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 week ago"
+                                android:textSize="11sp"
+                                android:textColor="#BDBDBD"
+                                android:layout_marginTop="12dp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+        <!-- Specialization Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Specialization"
+                android:textSize="18sp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="12dp">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@android:drawable/ic_menu_compass"
-                    android:contentDescription="marketing" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Design Icon -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Marketing"
-                    android:textSize="14sp"
-                    android:textColor="#000000" />
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        app:tint="#1A237E" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Design"
+                        android:textSize="13sp"
+                        android:textColor="#212121"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+                <!-- Technology Icon -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@android:drawable/ic_menu_manage"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        app:tint="#1A237E" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Technology"
+                        android:textSize="13sp"
+                        android:textColor="#212121"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+                <!-- Marketing Icon -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@android:drawable/ic_menu_compass"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        app:tint="#1A237E" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Marketing"
+                        android:textSize="13sp"
+                        android:textColor="#212121"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
         <!-- Recommendation Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Recommendation"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <!-- Job Recommendation 1 -->
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
 
+            <!-- Section Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:background="#E53935"
-                    android:contentDescription="netflix" />
-
-                <LinearLayout
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:text="Recommendation"
+                    android:textSize="18sp"
+                    android:textColor="#212121"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="13sp"
+                    android:textColor="#1A237E"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Recommendation Job Card 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/companyLogo1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/img_8"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/companyName1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Netflix"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textSize="15sp"
+                        android:textColor="#212121"
+                        android:textStyle="bold"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/companyLogo1"
+                        app:layout_constraintEnd_toStartOf="@id/bookmarkIcon1"
+                        app:layout_constraintTop_toTopOf="@id/companyLogo1" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/jobTitle1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Movie Screening"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000" />
+                        android:text="Senior UI/UX Designer"
+                        android:textSize="13sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/companyLogo1"
+                        app:layout_constraintEnd_toStartOf="@id/bookmarkIcon1"
+                        app:layout_constraintTop_toBottomOf="@id/companyName1" />
+
+                    <ImageView
+                        android:id="@+id/bookmarkIcon1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/btn_star_big_off"
+                        android:contentDescription="Bookmark"
+                        app:tint="#9E9E9E"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toBottomOf="@id/companyLogo1">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Marketing"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Design"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="3 Days ago"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@android:drawable/btn_star"
-                    android:contentDescription="bookmark" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Job Recommendation 2 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/ic_menu_manage"
-                    android:background="#1DA1F2"
-                    android:contentDescription="twitter" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Twitter"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UI Designer"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Full-time"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
                             android:text="Remote"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contract"
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="New York"
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="5 Days ago"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@android:drawable/btn_star"
-                    android:contentDescription="bookmark" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Job Recommendation 3 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="80dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <LinearLayout
+            <!-- Recommendation Job Card 2 -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/ic_menu_info_details"
-                    android:background="#FF6B6B"
-                    android:contentDescription="adobe" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:orientation="vertical">
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/companyLogo2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/img_9"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/companyName2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Adobe"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Product Designer"
-                        android:textSize="16sp"
+                        android:text="Facebook"
+                        android:textSize="15sp"
+                        android:textColor="#212121"
                         android:textStyle="bold"
-                        android:textColor="#000000" />
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/companyLogo2"
+                        app:layout_constraintEnd_toStartOf="@id/bookmarkIcon2"
+                        app:layout_constraintTop_toTopOf="@id/companyLogo2" />
+
+                    <TextView
+                        android:id="@+id/jobTitle2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="UI Manager"
+                        android:textSize="13sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/companyLogo2"
+                        app:layout_constraintEnd_toStartOf="@id/bookmarkIcon2"
+                        app:layout_constraintTop_toBottomOf="@id/companyName2" />
+
+                    <ImageView
+                        android:id="@+id/bookmarkIcon2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/btn_star_big_off"
+                        android:contentDescription="Bookmark"
+                        app:tint="#9E9E9E"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toBottomOf="@id/companyLogo2">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Design"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
+                            android:text="Remote"
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Senior"
-                            android:textSize="12sp"
-                            android:padding="4dp"
-                            android:background="#E0E0E0"
-                            android:textColor="#666666" />
+                            android:text="Contract"
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Seattle"
+                            android:textSize="11sp"
+                            android:textColor="#757575"
+                            android:background="@drawable/bg_tag"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="1 Week ago"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@android:drawable/btn_star"
-                    android:contentDescription="bookmark" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </LinearLayout>
 

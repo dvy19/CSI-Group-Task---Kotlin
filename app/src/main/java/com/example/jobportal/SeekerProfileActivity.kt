@@ -209,10 +209,10 @@ class SeekerProfileActivity : AppCompatActivity() {
             education_image = educationImagePart,
             resume = resumePart,
             resume_image = resumeImagePart
-        ).enqueue(object : Callback<ProfileResponse> {
+        ).enqueue(object : Callback<UpdateProfileResponse> {
             override fun onResponse(
-                call: Call<ProfileResponse>,
-                response: Response<ProfileResponse>
+                call: Call<UpdateProfileResponse>,
+                response: Response<UpdateProfileResponse>
             ) {
                 // Hide progress bar
                 progressBar?.visibility = ProgressBar.GONE
@@ -269,7 +269,7 @@ class SeekerProfileActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UpdateProfileResponse>, t: Throwable) {
                 progressBar?.visibility = ProgressBar.GONE
                 submitButton.isEnabled = true
 

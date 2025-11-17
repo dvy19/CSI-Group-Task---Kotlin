@@ -3,18 +3,41 @@ package com.example.jobportal
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
-data class ProfileResponse(
-    val education_text: String,
-    val experience: String,
-    val languages: String,
-    val skills: String,
-    val role: String,
+// Response for UPDATE profile (PUT request)
+data class UpdateProfileResponse(
+    val education_text: String?,
+    val experience: String?,
+    val languages: String?,
+    val skills: String?,
+    val role: String?,
     val education_image: String?,
     val profile_image: String?,
     val resume: String?,
     val resume_image: String?
+)
+
+// Response for GET profile - THIS IS THE ONE TO USE
+data class ProfileResponse(
+    val education_text: String?,
+    val experience: String?,
+    val languages: String?,
+    val skills: String?,
+    val role: String?,
+    val education_image: String?,
+    val profile_image: String?,
+    val resume: String?,
+    val resume_image: String?,
+    val user: User?
+)
+
+data class User(
+    val id: Int?,
+    val email: String?,
+    val username: String?,
+    val full_name: String?  // ← Add this field
 )
 
 // Profile Interface
@@ -32,5 +55,10 @@ interface ProfileApi {
         @Part education_image: MultipartBody.Part?,
         @Part resume: MultipartBody.Part?,
         @Part resume_image: MultipartBody.Part?
-    ): Call<ProfileResponse>
+    ): Call<UpdateProfileResponse>
+
+    @GET("auth/profile/")
+    suspend fun getProfile(
+        @Header("Authorization") token: String
+    ): Response<ProfileResponse>
 }

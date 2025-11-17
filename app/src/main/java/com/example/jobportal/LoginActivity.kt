@@ -13,7 +13,10 @@ import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+<<<<<<< HEAD
 import com.example.jobportal.SignupActivity
+=======
+>>>>>>> 2ef3b147b7564784bd1a0f25008c45ed4df9043c
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,10 +59,9 @@ class LoginActivity : AppCompatActivity() {
 
             println("DEBUG: Login button clicked")
 
-            // Moved role selection INSIDE the click listener
             val role = when {
                 radioJobGiver.isChecked -> "job_giver"
-                radioJobSeeker.isChecked -> "job_seeker"  // Fixed typo: was "jobseeker"
+                radioJobSeeker.isChecked -> "job_seeker"
                 else -> {
                     Toast.makeText(this@LoginActivity, "Please select a role", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -92,26 +94,35 @@ class LoginActivity : AppCompatActivity() {
                         setLoadingState(false, progressBar, btnLogin, etEmail, etPassword, radioJobSeeker, radioJobGiver, tvSignUpRedirect)
 
                         println("DEBUG: Login API response received - Success: ${response.isSuccessful}")
+                        println("DEBUG: Response code: ${response.code()}")
 
                         if (response.isSuccessful) {
                             val loginResponse = response.body()
 
                             if (loginResponse != null) {
-                                // ✅ SAVE THE TOKENS HERE!
+                                println("DEBUG: Login response body received")
+                                println("DEBUG: Access Token from API: ${loginResponse.access}")
+                                println("DEBUG: Refresh Token from API: ${loginResponse.refresh}")
+
+                                // Save the tokens
                                 preferences.saveTokens(
                                     accessToken = loginResponse.access,
                                     refreshToken = loginResponse.refresh
                                 )
 
-                                println("DEBUG: Login successful - Tokens saved!")
-                                println("DEBUG: Access Token: ${loginResponse.access}")
-                                println("DEBUG: Refresh Token: ${loginResponse.refresh}")
-                                println("DEBUG: Navigating to activity for role: $role")
+                                // Save the user role for future reference
+                                preferences.saveUserRole(role)
+
+                                // Verify tokens were saved
+                                val savedToken = preferences.getAccessToken()
+                                println("DEBUG: Verification - Token retrieved after saving: $savedToken")
+
+                                println("DEBUG: Login successful - All data saved!")
 
                                 Toast.makeText(
                                     this@LoginActivity,
                                     "Login Successful!",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
 
                                 val intent = if (role == "job_giver") {
@@ -125,6 +136,7 @@ class LoginActivity : AppCompatActivity() {
                                 finish()
 
                             } else {
+                                println("DEBUG: Login response body is NULL")
                                 Toast.makeText(
                                     this@LoginActivity,
                                     "Login failed: Invalid response",
@@ -134,6 +146,8 @@ class LoginActivity : AppCompatActivity() {
 
                         } else {
                             // Handle different error cases
+                            println("DEBUG: Login failed - Response code: ${response.code()}")
+
                             val errorMessage = when (response.code()) {
                                 400 -> "Missing or invalid fields"
                                 401 -> "Invalid email or password"
@@ -153,7 +167,10 @@ class LoginActivity : AppCompatActivity() {
                         // End loading state
                         setLoadingState(false, progressBar, btnLogin, etEmail, etPassword, radioJobSeeker, radioJobGiver, tvSignUpRedirect)
 
-                        println("DEBUG: Login API call failed: ${t.message}")
+                        println("DEBUG: Login API call failed")
+                        println("DEBUG: Error: ${t.message}")
+                        println("DEBUG: Stack trace: ${t.stackTraceToString()}")
+
                         Toast.makeText(
                             this@LoginActivity,
                             "Network error: ${t.localizedMessage}",
