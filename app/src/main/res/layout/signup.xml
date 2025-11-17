@@ -8,149 +8,165 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="30dp"
         android:gravity="center">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo"
-        android:layout_marginTop="40dp"
-        />
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="117dp"
+            android:src="@drawable/logo"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            />
 
-    <!-- Title Text -->
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="40dp" />
-
-    <!-- Full Name Input -->
-    <EditText
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/search_inp"
-        android:id="@+id/etFullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:layout_marginBottom="20dp"
-        android:padding="15dp"
-         />
-
-    <!-- Email Input -->
-    <EditText
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/search_inp"
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="20dp"
-        android:padding="15dp"
-        />
-
-    <!-- Password Input -->
-    <EditText
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/search_inp"
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="20dp"
-        android:padding="15dp"
-        />
-
-    <!-- Confirm Password Input -->
-    <EditText
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/search_inp"
-        android:id="@+id/etConfirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="30dp"
-        android:padding="15dp"
-        />
-
-    <!-- Role Selection Text -->
-    <TextView
-        android:id="@+id/tvRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select your role:"
-        android:textSize="16sp"
-        android:layout_marginBottom="10dp" />
-
-    <!-- Role Radio Buttons -->
-    <RadioGroup
-        android:id="@+id/radioGroupRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="30dp">
-
-        <RadioButton
-            android:id="@+id/radioJobSeeker"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Job Seeker"
-            android:checked="true" />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
 
-        <RadioButton
-            android:id="@+id/radioJobGiver"
-            android:layout_width="0dp"
+            >
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up Here"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please Enter Details to Continue"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+
+        <!-- Full Name Input -->
+        <EditText
+            android:background="@drawable/login_button"
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Recruiter" />
+            android:hint="Full Name"
+            android:layout_marginBottom="20dp"
+            android:padding="15dp"
+            />
 
-    </RadioGroup>
+        <!-- Email Input -->
+        <EditText
+            android:background="@drawable/login_button"
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="20dp"
+            android:padding="15dp"
+            />
 
-    <!-- Sign Up Button -->
-    <Button
-        android:id="@+id/btnSignUp"
-        android:background="@drawable/login_btn_2"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="18sp"
-        android:layout_marginBottom="20dp"
-        android:padding="15dp" />
+        <!-- Password Input -->
+        <EditText
+            android:background="@drawable/login_button"
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="20dp"
+            android:padding="15dp"
+            android:drawableEnd="@drawable/ic_visibility"
+            android:drawablePadding="8dp"
+            />
 
-    <!-- Progress Bar -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        <!-- Confirm Password Input -->
+        <EditText
+            android:background="@drawable/login_button"
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            android:drawableEnd="@drawable/ic_visibility"
+            android:drawablePadding="8dp"
+            />
 
-    <!-- Login Redirect Text -->
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/tvLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text=" Login here"
-        android:textSize="16sp"
-        android:padding="10dp" />
+        <!-- Role Selection Text -->
+        <TextView
+            android:id="@+id/tvRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select your role:"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp" />
 
-</LinearLayout>
+        <!-- Role Radio Buttons -->
+        <RadioGroup
+            android:id="@+id/radioGroupRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
+            <RadioButton
+                android:id="@+id/radioJobSeeker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Job Seeker"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioJobGiver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Recruiter" />
+
+        </RadioGroup>
+
+        <!-- Sign Up Button -->
+        <Button
+            android:id="@+id/btnSignUp"
+            android:background="@drawable/login_btn_2"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"
+            android:padding="15dp" />
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:layout_marginTop="10dp"
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- Login Redirect Text -->
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text=" Login here"
+            android:textSize="20sp"
+            android:padding="10dp" />
+
+    </LinearLayout>
 </ScrollView>
-

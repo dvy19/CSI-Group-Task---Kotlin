@@ -104,7 +104,7 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
 
         // Add to back stack if needed
-        // fragmentTransaction.addToBackStack(tag)
+        fragmentTransaction.addToBackStack(tag)
 
         fragmentTransaction.commit()
 

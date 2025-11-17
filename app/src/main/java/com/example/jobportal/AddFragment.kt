@@ -26,6 +26,7 @@ class AddFragment : Fragment() {
         addJob.setOnClickListener {
             val intent = Intent(requireContext(), AddJobActivity::class.java)
             startActivity(intent)
+
         }
 
         addCommJob.setOnClickListener {

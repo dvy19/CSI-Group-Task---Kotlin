@@ -36,7 +36,7 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
             android:id="@+id/etJobTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +56,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+
+            android:background="@drawable/login_button"
             android:id="@+id/etJobDescription"
             android:layout_width="match_parent"
             android:layout_height="120dp"
@@ -79,7 +80,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +102,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etCompanyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +124,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etJobType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +147,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etSalary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,7 +170,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,7 +192,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
 
             android:id="@+id/etRequiredSkills"
             android:layout_width="match_parent"
@@ -207,7 +214,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
 
             android:id="@+id/etRequiredExperience"
             android:layout_width="match_parent"
@@ -229,7 +237,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etJobTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -249,7 +258,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etRequiredEducation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -270,7 +280,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
             android:id="@+id/etRequiredLanguages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -291,7 +302,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
 
             android:id="@+id/etAuthorEmail"
             android:layout_width="match_parent"
@@ -314,7 +326,8 @@
             android:layout_marginBottom="4dp" />
 
         <EditText
-            android:background="@drawable/search_inp"
+            android:background="@drawable/login_button"
+
 
             android:id="@+id/etAuthorName"
             android:layout_width="match_parent"
