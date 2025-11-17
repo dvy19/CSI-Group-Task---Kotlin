@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
@@ -16,6 +17,7 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var preferences: AppPreferences
     private lateinit var Password: EditText
     private lateinit var ConfirmPassword: EditText
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +36,22 @@ class SignupActivity : AppCompatActivity() {
         val radioJobSeeker = findViewById<RadioButton>(R.id.radioJobSeeker)
         val radioJobGiver = findViewById<RadioButton>(R.id.radioJobGiver)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-
         val toLogin = findViewById<TextView>(R.id.tvLogin)
 
         // Add password toggle functionality
         setupPasswordToggle()
 
         toLogin.setOnClickListener() {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (!isLoading) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         btnSignUp.setOnClickListener {
+            if (isLoading) return@setOnClickListener
+
             println("DEBUG: Signup button clicked")
 
             val fullName = Fullname.text.toString()
@@ -61,9 +66,8 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Show progress bar
-            progressBar.visibility = ProgressBar.VISIBLE
-            btnSignUp.isEnabled = false
+            // Start loading state
+            setLoadingState(true, progressBar, btnSignUp, Fullname, mail, Password, ConfirmPassword, radioJobSeeker, radioJobGiver, toLogin)
 
             val request = SignupRequest(
                 full_name = fullName,
@@ -80,9 +84,8 @@ class SignupActivity : AppCompatActivity() {
                         call: Call<SignupResponse>,
                         response: Response<SignupResponse>
                     ) {
-                        // Hide progress bar
-                        progressBar.visibility = ProgressBar.GONE
-                        btnSignUp.isEnabled = true
+                        // End loading state
+                        setLoadingState(false, progressBar, btnSignUp, Fullname, mail, Password, ConfirmPassword, radioJobSeeker, radioJobGiver, toLogin)
 
                         println("DEBUG: API response received - Success: ${response.isSuccessful}")
 
@@ -141,9 +144,8 @@ class SignupActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                        // Hide progress bar
-                        progressBar.visibility = ProgressBar.GONE
-                        btnSignUp.isEnabled = true
+                        // End loading state
+                        setLoadingState(false, progressBar, btnSignUp, Fullname, mail, Password, ConfirmPassword, radioJobSeeker, radioJobGiver, toLogin)
 
                         println("DEBUG: API call failed: ${t.message}")
                         Toast.makeText(
@@ -157,14 +159,50 @@ class SignupActivity : AppCompatActivity() {
 
         val loginBtn = findViewById<TextView>(R.id.tvLogin)
         loginBtn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            if (!isLoading) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
+    }
+
+    private fun setLoadingState(
+        loading: Boolean,
+        progressBar: ProgressBar,
+        signUpButton: Button,
+        fullName: EditText,
+        email: EditText,
+        password: EditText,
+        confirmPassword: EditText,
+        radioJobSeeker: RadioButton,
+        radioJobGiver: RadioButton,
+        toLogin: TextView
+    ) {
+        isLoading = loading
+
+        // Show/hide progress bar
+        progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+
+        // Enable/disable sign up button
+        signUpButton.isEnabled = !loading
+        signUpButton.alpha = if (loading) 0.5f else 1.0f
+
+        // Enable/disable all input fields
+        fullName.isEnabled = !loading
+        email.isEnabled = !loading
+        password.isEnabled = !loading
+        confirmPassword.isEnabled = !loading
+        radioJobSeeker.isEnabled = !loading
+        radioJobGiver.isEnabled = !loading
+        toLogin.isEnabled = !loading
+        toLogin.alpha = if (loading) 0.5f else 1.0f
     }
 
     private fun setupPasswordToggle() {
         // For Password field
         Password.setOnTouchListener { v, event ->
+            if (isLoading) return@setOnTouchListener true // Prevent toggle during loading
+
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= (Password.right - Password.compoundDrawables[drawableRight].bounds.width())) {
@@ -177,6 +215,8 @@ class SignupActivity : AppCompatActivity() {
 
         // For Confirm Password field
         ConfirmPassword.setOnTouchListener { v, event ->
+            if (isLoading) return@setOnTouchListener true // Prevent toggle during loading
+
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= (ConfirmPassword.right - ConfirmPassword.compoundDrawables[drawableRight].bounds.width())) {

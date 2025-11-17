@@ -186,12 +186,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
+
 
 
 
@@ -206,6 +201,13 @@
             android:text="Resume Image"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <!-- Submit Button -->
         <Button

@@ -5,6 +5,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -20,6 +21,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var preferences: AppPreferences
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.login_button)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         val tvSignUpRedirect = findViewById<TextView>(R.id.tvSignUpRedirect)
-
         val radioJobSeeker = findViewById<RadioButton>(R.id.radioJobSeeker)
         val radioJobGiver = findViewById<RadioButton>(R.id.radioJobGiver)
 
@@ -44,11 +45,15 @@ class LoginActivity : AppCompatActivity() {
 
         // Redirect to Signup
         tvSignUpRedirect.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+            if (!isLoading) {
+                val intent = Intent(this, SignupActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         btnLogin.setOnClickListener {
+            if (isLoading) return@setOnClickListener
+
             println("DEBUG: Login button clicked")
 
             // Moved role selection INSIDE the click listener
@@ -68,9 +73,8 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Show progress bar
-            progressBar.visibility = ProgressBar.VISIBLE
-            btnLogin.isEnabled = false
+            // Start loading state
+            setLoadingState(true, progressBar, btnLogin, etEmail, etPassword, radioJobSeeker, radioJobGiver, tvSignUpRedirect)
 
             val request = LoginRequest(
                 email = email,
@@ -84,9 +88,8 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginResponse>,
                         response: Response<LoginResponse>
                     ) {
-                        // Hide progress bar
-                        progressBar.visibility = ProgressBar.GONE
-                        btnLogin.isEnabled = true
+                        // End loading state
+                        setLoadingState(false, progressBar, btnLogin, etEmail, etPassword, radioJobSeeker, radioJobGiver, tvSignUpRedirect)
 
                         println("DEBUG: Login API response received - Success: ${response.isSuccessful}")
 
@@ -147,9 +150,8 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        // Hide progress bar
-                        progressBar.visibility = ProgressBar.GONE
-                        btnLogin.isEnabled = true
+                        // End loading state
+                        setLoadingState(false, progressBar, btnLogin, etEmail, etPassword, radioJobSeeker, radioJobGiver, tvSignUpRedirect)
 
                         println("DEBUG: Login API call failed: ${t.message}")
                         Toast.makeText(
@@ -162,12 +164,42 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun setLoadingState(
+        loading: Boolean,
+        progressBar: ProgressBar,
+        loginButton: Button,
+        etEmail: EditText,
+        etPassword: EditText,
+        radioJobSeeker: RadioButton,
+        radioJobGiver: RadioButton,
+        tvSignUpRedirect: TextView
+    ) {
+        isLoading = loading
+
+        // Show/hide progress bar
+        progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+
+        // Enable/disable login button
+        loginButton.isEnabled = !loading
+        loginButton.alpha = if (loading) 0.5f else 1.0f
+
+        // Enable/disable input fields
+        etEmail.isEnabled = !loading
+        etPassword.isEnabled = !loading
+        radioJobSeeker.isEnabled = !loading
+        radioJobGiver.isEnabled = !loading
+        tvSignUpRedirect.isEnabled = !loading
+        tvSignUpRedirect.alpha = if (loading) 0.5f else 1.0f
+    }
+
     private fun setupPasswordToggle(passwordEditText: EditText) {
         // Set initial state (hidden password)
         passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
         passwordEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility, 0)
 
         passwordEditText.setOnTouchListener { v, event ->
+            if (isLoading) return@setOnTouchListener true // Prevent toggle during loading
+
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= (passwordEditText.right - passwordEditText.compoundDrawables[drawableRight].bounds.width())) {
