@@ -1,7 +1,10 @@
 package com.example.jobportal
 
 import android.content.Intent
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -10,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.jobportal.SignupActivity
-import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
 
         val radioJobSeeker = findViewById<RadioButton>(R.id.radioJobSeeker)
         val radioJobGiver = findViewById<RadioButton>(R.id.radioJobGiver)
+
+        // Setup password toggle functionality
+        setupPasswordToggle(etPassword)
 
         // Redirect to Signup
         tvSignUpRedirect.setOnClickListener {
@@ -155,6 +160,39 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
         }
+    }
+
+    private fun setupPasswordToggle(passwordEditText: EditText) {
+        // Set initial state (hidden password)
+        passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+        passwordEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility, 0)
+
+        passwordEditText.setOnTouchListener { v, event ->
+            val drawableRight = 2
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= (passwordEditText.right - passwordEditText.compoundDrawables[drawableRight].bounds.width())) {
+                    togglePasswordVisibility(passwordEditText)
+                    return@setOnTouchListener true
+                }
+            }
+            false
+        }
+    }
+
+    private fun togglePasswordVisibility(editText: EditText) {
+        val selection = editText.selectionEnd
+        if (editText.transformationMethod == PasswordTransformationMethod.getInstance()) {
+            // Show password
+            editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            // Change drawable to eye off icon
+            editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off, 0)
+        } else {
+            // Hide password
+            editText.transformationMethod = PasswordTransformationMethod.getInstance()
+            // Change drawable to eye icon
+            editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility, 0)
+        }
+        editText.setSelection(selection)
     }
 
     private fun validateInput(email: String, password: String): Boolean {
